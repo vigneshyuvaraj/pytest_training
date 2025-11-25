@@ -24,7 +24,7 @@ pipeline {
         stage('Run pytest') {
             steps {
                 sh """
-                    python3.11 -m pytest -m "${params.TEST_PRIORITY}" --junitxml=test-results/pytest-results.xml
+                    /opt/homebrew/bin/python3.11 -m pytest -m "${params.TEST_PRIORITY}" --junitxml=test-results/pytest-results.xml
                 """
             }
         }

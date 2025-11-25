@@ -13,9 +13,9 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 sh """
-                    python3.11 -m pip install --upgrade pip
+                    /opt/homebrew/bin/python3.11 -m pip install --upgrade pip
                     if [ -f requirements.txt ]; then
-                        python3.11 -m pip install -r requirements.txt
+                        /opt/homebrew/bin/python3.11 -m pip install -r requirements.txt
                     fi
                 """
             }

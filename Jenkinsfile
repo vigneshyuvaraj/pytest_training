@@ -106,7 +106,7 @@ pipeline {
     post {
         always {
             junit 'test-results/results.xml'
-            archiveArtifacts artifacts: 'test-results/**', fingerprint: true
+            archiveArtifacts artifacts: 'reports/**', fingerprint: true
         }
     }
 }

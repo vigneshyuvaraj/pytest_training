@@ -1,13 +1,21 @@
 pipeline {
     agent any
 
+    parameters {
+        choice(
+            name: 'TEST_PRIORITY',
+            choices: ['P0', 'P1', 'P2'],
+            description: 'Choose which priority tests to run'
+        )
+    }
+
     stages {
         stage('Install dependencies') {
             steps {
                 sh """
-                    python3 -m pip install --upgrade pip
+                    python3.11 -m pip install --upgrade pip
                     if [ -f requirements.txt ]; then
-                        python3 -m pip install -r requirements.txt
+                        python3.11 -m pip install -r requirements.txt
                     fi
                 """
             }
@@ -16,7 +24,7 @@ pipeline {
         stage('Run pytest') {
             steps {
                 sh """
-                    pytest -m "smoke" --junitxml=test-results/pytest-results.xml
+                    python3.11 -m pytest -m "${params.TEST_PRIORITY}" --junitxml=test-results/pytest-results.xml
                 """
             }
         }
